@@ -22,10 +22,9 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import ch.zli.m223.punchclock.domain.Entry;
 import ch.zli.m223.punchclock.service.EntryService;
 
-@Authenticated
 @Path("/entries")
 @Tag(name = "Entries", description = "Handling of entries")
-public class EntryController {
+public class UserController {
 
     @Inject
     EntryService entryService;
@@ -48,7 +47,7 @@ public class EntryController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Entry add(Entry entry) {
-       return entryService.createEntry(entry);
+        return entryService.createEntry(entry);
     }
 
 

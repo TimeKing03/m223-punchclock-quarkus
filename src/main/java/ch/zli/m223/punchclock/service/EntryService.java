@@ -6,8 +6,10 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import javax.persistence.PersistenceException;
 
 import ch.zli.m223.punchclock.domain.Entry;
+import io.quarkus.security.Authenticated;
 
 @ApplicationScoped
 public class EntryService {
@@ -28,4 +30,20 @@ public class EntryService {
         var query = entityManager.createQuery("FROM Entry");
         return query.getResultList();
     }
+
+    public Entry getEntry(Long id) {
+        return entityManager.find(Entry.class, id);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        entityManager.remove(getEntry(id));
+    }
+
+    @Transactional
+    public Entry updateEntry(Entry entry) {
+        entityManager.merge(entry);
+        return entry;
+    }
+
 }
