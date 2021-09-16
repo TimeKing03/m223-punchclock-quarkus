@@ -28,4 +28,10 @@ public class EntryService {
         var query = entityManager.createQuery("FROM Entry");
         return query.getResultList();
     }
+
+    @Transactional
+    public void delete(Long id) {
+        entityManager.remove(entityManager.find(Entry.class, id));
+    }
+
 }

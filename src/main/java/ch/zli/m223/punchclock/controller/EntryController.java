@@ -6,9 +6,12 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.Path;
+import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
@@ -36,6 +39,14 @@ public class EntryController {
     @Operation(summary = "Add a new Entry", description = "The newly created entry is returned. The id may not be passed.")
     public Entry add(Entry entry) {
        return entryService.createEntry(entry);
+    }
+
+
+    @DELETE
+    @Path("/{id}")
+    @Operation(summary = "Delete Entry", description = "The Entry given is deleted")
+    public void delete(@PathParam Long id) {
+        entryService.delete(id);
     }
 
 }
