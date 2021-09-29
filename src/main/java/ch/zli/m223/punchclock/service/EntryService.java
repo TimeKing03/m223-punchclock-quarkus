@@ -31,6 +31,13 @@ public class EntryService {
         return query.getResultList();
     }
 
+    public List<Entry> findAllFromUser(Long userId) {
+        var query = entityManager.createQuery("FROM Entry WHERE entryUser_id = :userid");
+        query.setParameter("userid", userId);
+
+        return query.getResultList();
+    }
+
     public Entry getEntry(Long id) {
         return entityManager.find(Entry.class, id);
     }

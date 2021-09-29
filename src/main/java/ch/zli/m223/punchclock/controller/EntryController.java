@@ -38,6 +38,13 @@ public class EntryController {
     }
 
     @GET
+    @Path("/entriesFromUser/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Entry> listEntriesFromUser(@PathParam("id") Long id) {
+        return entryService.findAllFromUser(id);
+    }
+
+    @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Entry getEntry(@PathParam("id") Long id) {

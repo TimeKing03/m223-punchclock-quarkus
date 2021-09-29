@@ -35,7 +35,7 @@ const createEntry = (e) => {
 };
 
 const indexEntries = () => {
-    fetch(`${URL}/entries`, {
+    fetch(`${URL}/entries/entriesFromUser/${localStorage.getItem("user_id")}`, {
         method: 'GET',
         headers: {
             'Authorization': "Bearer " + localStorage.getItem("token")
