@@ -5,6 +5,8 @@ if (!localStorage.getItem("token")) {
     location.replace("index.html");
 }
 
+console.log(localStorage.getItem("user_id"));
+
 const dateAndTimeToDate = (dateString, timeString) => {
     return new Date(`${dateString}T${timeString}`).toISOString();
 };
@@ -15,6 +17,7 @@ const createEntry = (e) => {
     const entry = {};
     entry['checkIn'] = dateAndTimeToDate(formData.get('checkInDate'), formData.get('checkInTime'));
     entry['checkOut'] = dateAndTimeToDate(formData.get('checkOutDate'), formData.get('checkOutTime'));
+    entry['entryUser'] = {'id': localStorage.getItem("user_id")}
 
     fetch(`${URL}/entries`, {
         method: 'POST',

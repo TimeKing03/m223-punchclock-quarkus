@@ -36,6 +36,13 @@ public class EntryUserService {
         return entityManager.find(EntryUser.class, id);
     }
 
+    public long getEntryUserByName(String username) {
+        var query = entityManager.createQuery("SELECT id FROM EntryUser WHERE username = :name");
+        query.setParameter("name", username);
+        var result = query.getSingleResult();
+        return (long)result;
+    }
+
     @Transactional
     public void delete(Long id) {
         entityManager.remove(getEntryUser(id));

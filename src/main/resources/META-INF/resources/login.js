@@ -16,8 +16,22 @@ function login() {
                 console.log(result);
                 if (result != "") {
                     localStorage.setItem("token", result);
-                    location.replace("entries.html");
+                    getUserId();
                 }
           });
     });
+}
+
+function getUserId() {
+    fetch(`${URL}/user/findByName/${document.getElementById("username").value}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((id) => {
+            id.json().then((id) => {
+                localStorage.setItem("user_id", id);
+                location.replace("entries.html");
+            })
+        })
 }
