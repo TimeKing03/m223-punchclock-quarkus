@@ -76,14 +76,20 @@ const renderEntries = () => {
         row.appendChild(createCell(entry.id));
         row.appendChild(createCell(new Date(entry.checkIn).toLocaleString()));
         row.appendChild(createCell(new Date(entry.checkOut).toLocaleString()));
-        let btn = document.createElement("button");;
-        btn.innerHTML = "Delete";
-        btn.value = entry.id;
-        btn.onclick = function() {
-            deleteEntry(btn.value);
+        let deleteButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
+        deleteButton.value = entry.id;
+        deleteButton.onclick = function() {
+            deleteEntry(deleteButton.value);
             location.replace("index.html");
         }
-        row.appendChild(btn)
+        row.appendChild(deleteButton);
+        let editButton = document.createElement("button");
+        editButton.innerText = "Edit";
+        editButton.onclick = function() {
+            editEntry(entry);
+        }
+        row.appendChild(editButton)
         display.appendChild(row);
     });
 };
@@ -91,6 +97,17 @@ const renderEntries = () => {
 function logout() {
     localStorage.setItem("token", '');
     location.reload();
+}
+
+function editEntry(entry) {
+    fetch(`${URL}/entries`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + localStorage.getItem("token")
+        },
+        body: JSON.stringify(entry)
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function(){
