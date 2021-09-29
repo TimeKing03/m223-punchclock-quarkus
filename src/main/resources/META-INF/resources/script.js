@@ -1,6 +1,10 @@
 const URL = 'http://localhost:8080';
 let entries = [];
 
+if (!localStorage.getItem("token")) {
+    location.replace("index.html");
+}
+
 const dateAndTimeToDate = (dateString, timeString) => {
     return new Date(`${dateString}T${timeString}`).toISOString();
 };
@@ -15,7 +19,8 @@ const createEntry = (e) => {
     fetch(`${URL}/entries`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + localStorage.getItem("token")
         },
         body: JSON.stringify(entry)
     }).then((result) => {
@@ -28,7 +33,10 @@ const createEntry = (e) => {
 
 const indexEntries = () => {
     fetch(`${URL}/entries`, {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Authorization': "Bearer " + localStorage.getItem("token")
+        }
     }).then((result) => {
         result.json().then((result) => {
             entries = result;
@@ -38,9 +46,14 @@ const indexEntries = () => {
     renderEntries();
 };
 
+
 function deleteEntry(id) {
     fetch(`${URL}/entries/` + id, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + localStorage.getItem("token")
+        },
     });
     renderEntries();
 };
@@ -71,6 +84,11 @@ const renderEntries = () => {
         display.appendChild(row);
     });
 };
+
+function logout() {
+    localStorage.setItem("token", '');
+    location.reload();
+}
 
 document.addEventListener('DOMContentLoaded', function(){
     const createEntryForm = document.querySelector('#createEntryForm');

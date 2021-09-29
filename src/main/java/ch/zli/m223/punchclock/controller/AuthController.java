@@ -26,7 +26,7 @@ public class AuthController {
         if (authService.userExists(entryUser)) {
             return authService.GenerateValidJwtToken(entryUser.getUsername());
         } else {
-            throw new NotAuthorizedException("Username " + entryUser.getUsername());
+            return "";
         }
     }
 
