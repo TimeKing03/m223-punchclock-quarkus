@@ -10,39 +10,40 @@ import javax.transaction.Transactional;
 
 import ch.zli.m223.punchclock.domain.Category;
 import ch.zli.m223.punchclock.domain.Entry;
+import ch.zli.m223.punchclock.domain.Place;
 
 @ApplicationScoped
-public class CategoryService {
+public class PlaceService {
     @Inject
     private EntityManager entityManager;
 
-    public CategoryService() {
+    public PlaceService() {
     }
 
     @Transactional
-    public Category createCategory(Category category) {
-        entityManager.persist(category);
-        return category;
+    public Place createPlace(Place place) {
+        entityManager.persist(place);
+        return place;
     }
 
     @SuppressWarnings("unchecked")
-    public List<Category> findAll() {
-        var query = entityManager.createQuery("FROM Category");
+    public List<Place> findAll() {
+        var query = entityManager.createQuery("FROM Place");
         return query.getResultList();
     }
 
-    public Category getCategory(Long id) {
-        return entityManager.find(Category.class, id);
+    public Place getPlace(Long id) {
+        return entityManager.find(Place.class, id);
     }
 
     @Transactional
     public void delete(Long id) {
-        entityManager.remove(getCategory(id));
+        entityManager.remove(getPlace(id));
     }
 
     @Transactional
-    public void updateCategory(Category category) {
-        entityManager.merge(category);
+    public void updatePlace(Place place) {
+        entityManager.merge(place);
     }
 
 }

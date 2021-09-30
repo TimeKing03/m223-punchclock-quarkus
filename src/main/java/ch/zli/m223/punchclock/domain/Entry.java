@@ -22,6 +22,9 @@ public class Entry {
     @ManyToOne
     private EntryUser entryUser;
 
+    @ManyToOne
+    private Place place;
+
     public EntryUser getEntryUser() {
         return entryUser;
     }
@@ -60,5 +63,13 @@ public class Entry {
 
     public void setCategory(Category newCategory) {
         category = newCategory;
+    }
+
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
     }
 }

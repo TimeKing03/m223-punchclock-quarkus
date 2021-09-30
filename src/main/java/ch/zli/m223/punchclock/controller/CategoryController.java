@@ -62,6 +62,6 @@ public class CategoryController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public void updateCategory(Category category) {
-        categoryService.updateEntry(category);
+        categoryService.updateCategory(category);
     }
 }

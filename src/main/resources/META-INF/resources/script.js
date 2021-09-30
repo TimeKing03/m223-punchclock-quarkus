@@ -19,6 +19,7 @@ const createEntry = (e) => {
     entry['checkOut'] = dateAndTimeToDate(formData.get('checkOutDate'), formData.get('checkOutTime'));
     entry['entryUser'] = {'id': localStorage.getItem("user_id")};
     entry['category'] = {'id': document.getElementById("createCategory").options[document.getElementById("createCategory").selectedIndex].value};
+    entry['place'] = {'id': document.getElementById("createPlace").options[document.getElementById("createPlace").selectedIndex].value};
 
     console.log(entry);
 
@@ -108,7 +109,8 @@ function editEntry(entry) {
     document.getElementById("editCheckInTime").value = entry.checkIn.replace(/(.*T)/, "");
     document.getElementById("editCheckOutTime").value = entry.checkOut.replace(/(.*T)/, "");
     document.getElementById("entryId").value = entry.id;
-    preLoad("editCategory");
+    preLoadCategories("editCategory");
+    preLoadPlaces("editPlace");
     document.getElementById("editEntry").style.display = "inline-block";
 }
 
@@ -118,6 +120,8 @@ function saveEditEntry() {
     entry['checkOut'] = dateAndTimeToDate(document.getElementById('editCheckOut').value, document.getElementById('editCheckOutTime').value);
     entry['entryUser'] = {'id': parseInt(localStorage.getItem("user_id"))};
     entry['id'] = parseInt(document.getElementById("entryId").value);
+    entry['category'] = {'id': document.getElementById("editCategory").options[document.getElementById("editCategory").selectedIndex].value};
+    entry['place'] = {'id': document.getElementById("editPlace").options[document.getElementById("editPlace").selectedIndex].value};
 
     fetch(`${URL}/entries`, {
         method: 'PUT',
@@ -129,7 +133,7 @@ function saveEditEntry() {
     });
 }
 
-function preLoad(id) {
+function preLoadCategories(id) {
     fetch(`${URL}/categories`, {
         method: 'GET',
         headers: {
@@ -147,9 +151,28 @@ function preLoad(id) {
     })
 }
 
+function preLoadPlaces(id) {
+    fetch(`${URL}/places`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem("token")
+            }
+        }).then((results) => {
+            results.json().then((results) => {
+                results.forEach((result) => {
+                    let option = new Option(result.title);
+                    option.value = result.id;
+                    document.getElementById(id).add(option);
+                })
+            })
+        })
+}
+
 document.addEventListener('DOMContentLoaded', function(){
     const createEntryForm = document.querySelector('#createEntryForm');
     createEntryForm.addEventListener('submit', createEntry);
     indexEntries();
-    preLoad("createCategory");
+    preLoadCategories("createCategory");
+    preLoadPlaces("createPlace");
 });
