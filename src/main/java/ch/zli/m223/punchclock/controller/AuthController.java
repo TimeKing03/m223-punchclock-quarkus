@@ -22,6 +22,12 @@ public class AuthController {
     @Inject
     EntryUserController entryUserController;
 
+    /**
+     * The function creates a EntryUser instance with the username and password it gets from a JSON-formatted string
+     *
+     * @param entryUser gets the username and password via POST and creates a EntryUser instance
+     * @return a token if the user was able to log in, else it returns an empty string
+     */
     @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -34,6 +40,12 @@ public class AuthController {
         }
     }
 
+    /**
+     * The function gets a username and password and if the username doesn't exist already, it creates a new User and writes it in the database
+     *
+     * @param entryUser is a EntryUser instance and gets the username and password from the POST request.
+     * @return a token if the user was able to register, else it returns an empty string
+     */
     @POST
     @Path("/register")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -55,6 +67,11 @@ public class AuthController {
         }
     }
 
+    /**
+     * this function is only for admin users and if they have the "isAdmin" attribute true, then they can log in as a Admin
+     * @param entryUser creates a EntryUser with the POST request
+     * @return a token if the user was able to log in, else it returns an empty string
+     */
     @POST
     @Path("/admin/login")
     @Consumes(MediaType.APPLICATION_JSON)

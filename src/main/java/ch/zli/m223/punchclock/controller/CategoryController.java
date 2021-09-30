@@ -32,12 +32,21 @@ public class CategoryController {
     @Inject
     CategoryService categoryService;
 
+    /**
+     * @return this function returns all categories
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Category> list() {
         return categoryService.findAll();
     }
 
+    /**
+     * this function gets the id in the URL and gets a specific category
+     *
+     * @param id is getting passed in the URL
+     * @return a specific category
+     */
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -45,6 +54,11 @@ public class CategoryController {
         return categoryService.getCategory(id);
     }
 
+    /**
+     * This function creates a new Category
+     * @param category creates a Category with the POST request
+     * @return the newly created Category
+     */
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -52,12 +66,20 @@ public class CategoryController {
         return categoryService.createCategory(category);
     }
 
+    /**
+     * This function deletes a specific category
+     * @param id gets passed in the URL
+     */
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") Long id) {
         categoryService.delete(id);
     }
 
+    /**
+     * This function updates a already existing category
+     * @param category creates a Category with the PUT request
+     */
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)

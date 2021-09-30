@@ -30,6 +30,10 @@ public class EntryController {
     @Inject
     EntryService entryService;
 
+    /**
+     * This function gets all Entries
+     * @return a list of entries
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "List all Entries", description = "")
@@ -37,6 +41,11 @@ public class EntryController {
         return entryService.findAll();
     }
 
+    /**
+     * This function gets all entries of a specific user
+     * @param id gets passed in the URL
+     * @return a list of entries
+     */
     @GET
     @Path("/entriesFromUser/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -44,6 +53,11 @@ public class EntryController {
         return entryService.findAllFromUser(id);
     }
 
+    /**
+     * This function gets a specific Entry
+     * @param id gets passed in the URL
+     * @return a Entry
+     */
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -51,6 +65,11 @@ public class EntryController {
         return entryService.getEntry(id);
     }
 
+    /**
+     * This function creates a new Entry
+     * @param entry creates a Entry with the POST request
+     * @return the newly created Entry
+     */
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -58,13 +77,20 @@ public class EntryController {
        return entryService.createEntry(entry);
     }
 
-
+    /**
+     * This function deletes an existing Entry
+     * @param id gets passed in the URL
+     */
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") Long id) {
         entryService.delete(id);
     }
 
+    /**
+     * This function updates a already existing Entry
+     * @param entry creates a Entry with the POST request
+     */
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)

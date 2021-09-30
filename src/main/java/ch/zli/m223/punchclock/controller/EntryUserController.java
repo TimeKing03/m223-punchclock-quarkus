@@ -30,12 +30,20 @@ public class EntryUserController {
     @Inject
     EntryUserService entryUserService;
 
+    /**
+     * @return a list of EntryUser
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<EntryUser> list() {
         return entryUserService.findAll();
     }
 
+    /**
+     * This function gets a specific EntryUser
+     * @param id gets passed in the URL
+     * @return a specific EntryUser
+     */
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -43,6 +51,11 @@ public class EntryUserController {
         return entryUserService.getEntryUser(id);
     }
 
+    /**
+     * This function gets a specific id of a EntryUser
+     * @param username gets passed in the URL
+     * @return a specific id
+     */
     @GET
     @Path("/findByName/{username}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -50,6 +63,11 @@ public class EntryUserController {
         return entryUserService.getEntryUserIdByName(username);
     }
 
+    /**
+     * This function gets a specific username of a EntryUser
+     * @param username gets passed in the URL
+     * @return a specific username
+     */
     @GET
     @Path("/findByName/isAdmin/{username}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -57,6 +75,11 @@ public class EntryUserController {
         return entryUserService.getEntryUserByName(username);
     }
 
+    /**
+     * This function creates a new EntryUser
+     * @param entryUser creates a EntryUser with the POST request
+     * @return the newly created EntryUser
+     */
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -64,13 +87,20 @@ public class EntryUserController {
         return entryUserService.createUser(entryUser);
     }
 
-
+    /**
+     * This function deletes a specific EntryUser
+     * @param id gets passed in the URL
+     */
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") Long id) {
         entryUserService.delete(id);
     }
 
+    /**
+     * This function updates a already existing EntryUser
+     * @param entryUser creates a EntryUser with the PUT request
+     */
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
