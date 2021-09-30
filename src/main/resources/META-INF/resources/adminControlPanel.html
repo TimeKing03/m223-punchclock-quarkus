@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Control Panel</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script defer src="adminControlPanel.js" type="application/javascript"></script>
 </head>
 <body>
-
+<form id="createEntryForm">
+    <label for="place">New place</label>
+    <input type="text" name="place" id="place" required>
+    <input type="submit" onclick="savePlace()" value="Save"/>
+</form>
+<form id="editEntry">
+    <label for="category">New Category</label>
+    <input type="text" name="category" id="category" required>
+    <input type="submit" onclick="saveCategory()" value="Save"/>
+</form>
 </body>
 </html>

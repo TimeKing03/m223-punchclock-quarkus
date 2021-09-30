@@ -32,3 +32,6 @@ als Admin anmelden.
 
 #SQL Importe
 Es werden 3 Kategorien, 3 Orte und 2 Benutzer hinzugefügt.
+
+#NOT DONE
+Leider konnte ich den Admin nicht ganz fertig machen, er kann nur neue Places und neue Kategorien hinzufügen.
