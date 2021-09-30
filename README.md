@@ -19,3 +19,16 @@ Datenquelle: jdbc:h2:mem:punchclock
 Benutzername: zli
 Passwort: zli
 
+#About
+In diesem Projekt kann man sich als User anmelden und seine Zeit tracken.
+Diese Zeiten können nach erstellen geloschen oder editiert werden.
+Es ist gedacht das man dies Privat oder als Firma brauchen kann, deswegen kann man
+angeben wo man gearbeitet hat und welche Art von Arbeiten man dann gemacht hat.
+
+Die Applikation kann gestartet werden mit ./mvnw compile quarkus:dev im root folder.
+
+Man kann sich unter http://localhost:8080/adminLogin.html mit "Username: Admin, Passwort: 123"
+als Admin anmelden.
+
+#SQL Importe
+Es werden 3 Kategorien, 3 Orte und 2 Benutzer hinzugefügt.
