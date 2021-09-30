@@ -25,7 +25,7 @@ import ch.zli.m223.punchclock.domain.Entry;
 import ch.zli.m223.punchclock.service.EntryService;
 
 @Path("/user")
-public class UserController {
+public class EntryUserController {
 
     @Inject
     EntryUserService entryUserService;
