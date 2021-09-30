@@ -18,6 +18,14 @@
     <label for="checkOut">Check out</label>
     <input type="date" name="checkOutDate" id="checkOut" required>
     <input type="time" name="checkOutTime" required>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="createCategory">Category</label>
+        </div>
+        <select class="custom-select" id="createCategory">
+            <option selected>Choose...</option>
+        </select>
+    </div>
     <input type="submit" value="Save"/>
 </form>
 <form id="editEntry">
@@ -27,6 +35,14 @@
     <label for="checkOut">Check out</label>
     <input type="date" name="checkOutDate" id="editCheckOut" >
     <input type="time" name="checkOutTime" id="editCheckOutTime" >
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="editCategory">Category</label>
+        </div>
+        <select class="custom-select" id="editCategory">
+            <option selected>Choose...</option>
+        </select>
+    </div>
     <input type="hidden" value="" id="entryId" >
     <button value="saveEdit" onclick="saveEditEntry()" id="saveEdit">Save</button>
 </form>
