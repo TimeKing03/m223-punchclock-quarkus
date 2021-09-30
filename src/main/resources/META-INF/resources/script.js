@@ -19,6 +19,8 @@ const createEntry = (e) => {
     entry['checkOut'] = dateAndTimeToDate(formData.get('checkOutDate'), formData.get('checkOutTime'));
     entry['entryUser'] = {'id': localStorage.getItem("user_id")}
 
+    console.log(entry);
+
     fetch(`${URL}/entries`, {
         method: 'POST',
         headers: {
@@ -100,14 +102,30 @@ function logout() {
 }
 
 function editEntry(entry) {
+
+    document.getElementById("editCheckIn").value = new Date(entry.checkIn).toLocaleDateString('en-CA').replace(/(T.*)/, "");
+    document.getElementById("editCheckOut").value = new Date(entry.checkOut).toLocaleDateString('en-CA').replace(/(T.*)/, "");
+    document.getElementById("editCheckInTime").value = entry.checkIn.replace(/(.*T)/, "");
+    document.getElementById("editCheckOutTime").value = entry.checkOut.replace(/(.*T)/, "");
+    document.getElementById("entryId").value = entry.id;
+    document.getElementById("editEntry").style.display = "inline-block";
+}
+
+function saveEditEntry() {
+    const entry = {};
+    entry['checkIn'] = dateAndTimeToDate(document.getElementById('editCheckIn').value, document.getElementById('editCheckInTime').value);
+    entry['checkOut'] = dateAndTimeToDate(document.getElementById('editCheckOut').value, document.getElementById('editCheckOutTime').value);
+    entry['entryUser'] = {'id': parseInt(localStorage.getItem("user_id"))};
+    entry['id'] = parseInt(document.getElementById("entryId").value);
+
     fetch(`${URL}/entries`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': "Bearer " + localStorage.getItem("token")
-        },
-        body: JSON.stringify(entry)
-    });
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem("token")
+            },
+            body: JSON.stringify(entry)
+        });
 }
 
 document.addEventListener('DOMContentLoaded', function(){

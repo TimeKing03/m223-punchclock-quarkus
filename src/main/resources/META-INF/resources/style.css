@@ -4,10 +4,22 @@ input {
     box-sizing: border-box;
 }
 
-input[type='submit'], table {
+input[type='submit'], table, #saveEdit {
     margin-top: 1rem;
 }
 
 table {
     width: 40rem;
+}
+
+form {
+    display: inline-block;
+}
+
+#logout {
+    display: block;
+}
+
+#editEntry {
+    display: none;
 }

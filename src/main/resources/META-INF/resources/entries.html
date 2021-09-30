@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, entryUser-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Punchclock Client</title>
-        <link rel="stylesheet" type="text/css" href="style.css" />
-        <script src="script.js" type="application/javascript"></script>
-    </head>
-    <body>
-    <button onclick="logout()">Logout</button>
-        <form id="createEntryForm">
-            <label for="checkIn">Check in</label>
-            <input type="date" name="checkInDate" id="checkIn" required>
-            <input type="time" name="checkInTime" required>
-            <label for="checkOut">Check out</label>
-            <input type="date" name="checkOutDate" id="checkOut" required>
-            <input type="time" name="checkOutTime" required>
-            <input type="submit" value="Save" />
-        </form>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Check in</th>
-                    <th>Check out</th>
-                </tr>
-            </thead>
-            <tbody id="entryDisplay">
-                <tr>
-                    <td colspan="3">Loading...</td>
-                </tr>
-            </tbody>
-        </table>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, entryUser-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Punchclock Client</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="script.js" type="application/javascript"></script>
+</head>
+<body>
+<button onclick="logout()" id="logout">Logout</button>
+<form id="createEntryForm">
+    <label for="checkIn">Check in</label>
+    <input type="date" name="checkInDate" id="checkIn" required>
+    <input type="time" name="checkInTime" required>
+    <label for="checkOut">Check out</label>
+    <input type="date" name="checkOutDate" id="checkOut" required>
+    <input type="time" name="checkOutTime" required>
+    <input type="submit" value="Save"/>
+</form>
+<form id="editEntry">
+    <label for="checkIn">Check in</label>
+    <input type="date" name="checkInDate" id="editCheckIn" >
+    <input type="time" name="checkInTime" id="editCheckInTime" >
+    <label for="checkOut">Check out</label>
+    <input type="date" name="checkOutDate" id="editCheckOut" >
+    <input type="time" name="checkOutTime" id="editCheckOutTime" >
+    <input type="hidden" value="" id="entryId" >
+    <button value="saveEdit" onclick="saveEditEntry()" id="saveEdit">Save</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Check in</th>
+        <th>Check out</th>
+    </tr>
+    </thead>
+    <tbody id="entryDisplay">
+    <tr>
+        <td colspan="3">Loading...</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
 </html>

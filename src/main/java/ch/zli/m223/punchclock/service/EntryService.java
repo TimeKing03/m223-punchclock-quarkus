@@ -1,20 +1,20 @@
 package ch.zli.m223.punchclock.service;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import javax.persistence.PersistenceException;
 
 import ch.zli.m223.punchclock.domain.Entry;
-import io.quarkus.security.Authenticated;
 
 @ApplicationScoped
 public class EntryService {
     @Inject
     private EntityManager entityManager;
+    Logger log;
 
     public EntryService() {
     }
@@ -48,9 +48,8 @@ public class EntryService {
     }
 
     @Transactional
-    public Entry updateEntry(Entry entry) {
+    public void updateEntry(Entry entry) {
         entityManager.merge(entry);
-        return entry;
     }
 
 }
