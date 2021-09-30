@@ -55,4 +55,16 @@ public class AuthController {
         }
     }
 
+    @POST
+    @Path("/admin/login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String adminLogin(EntryUser entryUser) {
+        if (authService.userExists(entryUser) && entryUserController.getUsernameByName(entryUser.getUsername())) {
+            return authService.GenerateValidJwtToken(entryUser.getUsername());
+        } else {
+            return "";
+        }
+    }
+
 }

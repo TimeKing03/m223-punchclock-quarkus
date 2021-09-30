@@ -17,6 +17,9 @@ public class EntryUser {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private boolean isAdmin;
+
     @OneToMany(mappedBy = "entryUser")
     @JsonIgnore
     private List<Entry> entries;
@@ -47,6 +50,14 @@ public class EntryUser {
 
     public String getPassword() {
         return password;
+    }
+
+    public boolean isIdAdmin() {
+        return isAdmin;
+    }
+
+    public void setIdAdmin(boolean idAdmin) {
+        this.isAdmin = idAdmin;
     }
 
     public void setPassword(String password) {

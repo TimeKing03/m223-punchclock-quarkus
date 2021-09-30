@@ -46,7 +46,14 @@ public class EntryUserController {
     @GET
     @Path("/findByName/{username}")
     @Produces(MediaType.APPLICATION_JSON)
-    public long getUserByName(@PathParam("username") String username) {
+    public long getUserIdByName(@PathParam("username") String username) {
+        return entryUserService.getEntryUserIdByName(username);
+    }
+
+    @GET
+    @Path("/findByName/isAdmin/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public boolean getUsernameByName(@PathParam("username") String username) {
         return entryUserService.getEntryUserByName(username);
     }
 
